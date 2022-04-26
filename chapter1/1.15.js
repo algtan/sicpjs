@@ -40,3 +40,9 @@ function sine(angle) {
 // p(p(p(p(p(sine(0.15 / 3)))))) -> p(p(p(p(p(sine(0.05))))))
 
 // The function 'p' is applied 5 times when 'sine(12.15)' is evaluated.
+
+
+// Part b
+
+// As 'a' grows, the growth in the space and number of steps is theta of log a.
+ 
