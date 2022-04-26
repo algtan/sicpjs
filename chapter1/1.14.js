@@ -5,3 +5,7 @@
 // section 1.2.2 in making change for 11 cents. What are the orders of growth of the
 // space and number of steps used by this process as the amount to be changed
 // increases?
+
+// The order of growth of the space is theta of n.
+
+// The order of growth of the number of steps is theta of n^5.
