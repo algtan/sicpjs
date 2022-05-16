@@ -25,8 +25,8 @@ function fib_iter(a, b, p, q, count) {
            : is_even(count)
            ? fib_iter(a,
                       b,
-                      p_prime, // compute p'
-                      q_prime, // compute q'
+                      p * p + q * q,    // compute p'
+                      2 * p * q + q * q // compute q'
                       count / 2)
            : fib_iter(b * q + a * q + a * p,
                       b * p + a * q,
