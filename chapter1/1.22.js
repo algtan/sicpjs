@@ -56,3 +56,23 @@ function square(x) {
 // well do the data for 100,000 and 1,000,000 support the sqrt(n) prediction? Is your result
 // compatible with the notion that programs on your machine run in time proportional to
 // the number of steps required for the computation?
+
+function search_for_primes(start_num, num_of_primes) {
+    return num_of_primes <= 0
+        ? true
+        : start_num <= 0 || (start_num % 2 === 0 && start_num > 2) // Numbers that are less than or equal to zero are not prime. Same with even numbers greater than 2.
+        ? search_for_primes(start_num + 1, num_of_primes)
+        : (start_num >= 1 && start_num <= 2) && is_undefined(timed_prime_test(start_num))
+        ? search_for_primes(start_num + 1, num_of_primes - 1)
+        : is_undefined(timed_prime_test(start_num))
+        ? search_for_primes(start_num + 2, num_of_primes - 1)
+        : search_for_primes(start_num + 2, num_of_primes);
+}
+
+search_for_primes(1000000, 3);
+search_for_primes(10000000, 3);
+
+// It is not until the jump from 1,000,000 to 10,000,000 that we see that the time to run
+// increases by about sqrt(10). Yes, my result is compatible with the notion that programs
+// on a machine run in time proportional to the number of steps required for the
+// computation.
