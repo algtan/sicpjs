@@ -17,3 +17,59 @@
 // with a function analogous to 'fermat_test'. Check your function by testing various known
 // primes and non-primes. Hint: One convenient way to make 'expmod' signal is to have it
 // return 0.
+
+// a^(n-1) % n === 1 % n
+// The smallest a can be is 1, therefore, the smallest n can be is 2 since a < n.
+// Therefore, 1 % n is always equal to 1 in this case.
+// So: a^(n-1) % n === 1
+
+function trivial_test(r, n) {
+    return !(r === 1 || r === n - 1) && square(r) % n === 1
+        ? 0 // not a prime number
+        : r;
+}
+
+function expmod(base, exp, m) {
+    return exp === 0
+        ? 1
+        : is_even(exp)
+        ? square(trivial_test(expmod(base, exp / 2, m), m)) % m
+        : (base * expmod(base, exp - 1, m)) % m;
+}
+
+function is_even(n) {
+    return n % 2 === 0;
+}
+
+function square(x) {
+    return x * x;
+}
+
+function miller_rabin_test(n) {
+    function try_it(a) {
+        return expmod(a, n - 1, n) === 1;
+    }
+    return try_it(1 + math_floor(math_random() * (n - 1)));
+}
+
+function miller_rabin_is_prime(n, times) {
+    return times === 0
+        ? true
+        : miller_rabin_test(n)
+        ? miller_rabin_is_prime(n, times - 1)
+        : false;
+}
+
+// miller_rabin_is_prime(561, 10); // false
+// miller_rabin_is_prime(1105, 10); // false
+// miller_rabin_is_prime(1729, 10); // false
+// miller_rabin_is_prime(2465, 10); // false
+// miller_rabin_is_prime(2821, 10); // false
+// miller_rabin_is_prime(6601, 10); // false
+// miller_rabin_is_prime(1, 10); // true
+// miller_rabin_is_prime(2, 10); // true
+// miller_rabin_is_prime(3, 10); // true
+// miller_rabin_is_prime(4, 10); // false
+// miller_rabin_is_prime(5, 10); // true
+// miller_rabin_is_prime(11, 10); // false
+// miller_rabin_is_prime(12, 10); // false
