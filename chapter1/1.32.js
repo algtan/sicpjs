@@ -16,6 +16,56 @@
 // 'accumulate' and show how 'sum' and 'product' can both be declared as simple calls to
 // 'accumulate'.
 
+// function sum(term, a, next, b) {
+//     return a >
+//         ? 0
+//         : term(a) + sum(term, next(a), next, b);
+// }
+
+// function product_recursive(term, a, next, b) {
+//     return a > b
+//         ? 1
+//         : term(a) * product_recursive(term, next(a), next, b);
+// }
+
+function accumulate_recursive(combiner, null_value, term, a, next, b) {
+  return a > b
+    ? null_value
+    : combiner(
+        term(a),
+        accumulate_recursive(combiner, null_value, term, next(a), next, b)
+      );
+}
+
+function sum_acc_r(term, a, next, b) {
+  function sum(x, y) {
+    return x + y;
+  }
+  return accumulate_recursive(sum, 0, term, a, next, b);
+}
+
+function product_acc_r(term, a, next, b) {
+  function product(x, y) {
+    return x * y;
+  }
+  return accumulate_recursive(product, 1, term, a, next, b);
+}
+
+function inc(x) {
+  return x + 1;
+}
+
+function identity(x) {
+  return x;
+}
+
+// sum_acc_r(identity, 0, inc, 3); // 6
+// sum_acc_r(identity, 0, inc, 4); // 10
+
+// product_acc_r(identity, 1, inc, 2); // 2
+// product_acc_r(identity, 1, inc, 3); // 6
+// product_acc_r(identity, 1, inc, 4); // 24
+
 // Part b
 
 // If your 'accumulate' function generates a recursive process, write one that generates an
