@@ -71,3 +71,33 @@ function identity(x) {
 // If your 'accumulate' function generates a recursive process, write one that generates an
 // iterative process. If it generates an iterative process, write one that generates a recursive
 // process.
+
+function accumulate_iterative(combiner, null_value, term, a, next, b) {
+    function iter(a, result) {
+        return a > b
+            ? result
+            : iter(next(a), combiner(term(a), result));
+    }
+    return iter(a, null_value);
+}
+
+function sum_acc_i(term, a, next, b) {
+    function sum(x, y) {
+        return x + y;
+    }
+    return accumulate_iterative(sum, 0, term, a, next, b);
+}
+
+function product_acc_i(term, a, next, b) {
+    function product(x, y) {
+        return x * y;
+    }
+    return accumulate_iterative(product, 1, term, a, next, b);
+}
+
+// sum_acc_i(identity, 0, inc, 3); // 6
+// sum_acc_i(identity, 0, inc, 4); // 10
+
+// product_acc_i(identity, 1, inc, 2); // 2
+// product_acc_i(identity, 1, inc, 3); // 6
+// product_acc_i(identity, 1, inc, 4); // 24
