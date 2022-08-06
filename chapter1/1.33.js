@@ -61,3 +61,20 @@ function filtered_accumulate(combiner, null_value, term, a, next, b, filter) {
             )
         : filtered_accumulate(combiner, null_value, term, next(a), next, b, filter);
 }
+
+// Part a
+function inc(x) {
+    return x + 1;
+}
+
+function sum_of_squares(a, b) {
+    function sum(x, y) {
+        return x + y;
+    }
+    return filtered_accumulate(sum, 0, square, a, inc, b, is_prime);
+}
+
+// sum_of_squares(2, 2); // 4
+// sum_of_squares(2, 3); // 13
+// sum_of_squares(2, 4); // 13
+// sum_of_squares(2, 5); // 38
