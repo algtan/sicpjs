@@ -78,3 +78,27 @@ function sum_of_squares(a, b) {
 // sum_of_squares(2, 3); // 13
 // sum_of_squares(2, 4); // 13
 // sum_of_squares(2, 5); // 38
+
+// Part b
+function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
+}
+
+function identity(x) {
+    return x;
+}
+
+function product_rel_prime(n) {
+    function rel_prime(a) {
+        return gcd(a, n) === 1;
+    }
+    
+    function product(x, y) {
+        return x * y;
+    }
+    
+    return filtered_accumulate(product, 1, identity, 2, inc, n, rel_prime);
+}
+
+// product_rel_prime(10); // 189
+// product_rel_prime(11); // 3628800
