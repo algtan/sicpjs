@@ -25,6 +25,26 @@
 // for successive values of 'k'. How large must you make 'k' in order to get an approximation
 // that is accurate to 4 decimal places?
 
+function cont_frac(n, d, k) {
+    function denominator(i) {
+        return i === k
+            ? d(k)
+            : d(i) + n(i + 1) / denominator(i + 1);
+    }
+    return n(1) / denominator(1);
+}
+
+
+// 1 / phi is approx. 0.61803399
+
+// cont_frac(i => 1, i => 1, 7); // 0.6190476
+// cont_frac(i => 1, i => 1, 8); // 0.6176471
+// cont_frac(i => 1, i => 1, 9); // 0.6181818
+// cont_frac(i => 1, i => 1, 10); // 0.6179775
+// cont_frac(i => 1, i => 1, 11); // 0.6180556
+
+// 'k' must be around 10 to get an approximation that is accurate to 4 decimal places
+
 
 // Part b
 // If your 'cont_frac' function generates a recursive process, write one that generates an
