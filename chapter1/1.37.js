@@ -50,3 +50,18 @@ function cont_frac(n, d, k) {
 // If your 'cont_frac' function generates a recursive process, write one that generates an
 // iterative process. If it generates an iterative process, write one that generates a recursive
 // process.
+
+function cont_frac_iterative(n, d, k) {
+    function iter(denominator, i) {
+        return i === 0
+            ? n(1) / denominator
+            : iter(n(i) + 1 / denominator, i - 1);
+    }
+    return iter(d(k), k - 1);
+}
+
+// cont_frac_iterative(i => 1, i => 1, 7); // 0.6190476
+// cont_frac_iterative(i => 1, i => 1, 8); // 0.6176471
+// cont_frac_iterative(i => 1, i => 1, 9); // 0.6181818
+// cont_frac_iterative(i => 1, i => 1, 10); // 0.6179775
+// cont_frac_iterative(i => 1, i => 1, 11); // 0.6180556
