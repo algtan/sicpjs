@@ -15,3 +15,7 @@ function cont_frac(n, d, k) {
     }
     return n(1) / denominator(1);
 }
+
+2 + cont_frac(i => 1,
+              i => (i + 1) % 3 === 0 ? (i + 1) / 3 * 2 : 1,
+              20);
