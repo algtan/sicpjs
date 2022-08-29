@@ -18,3 +18,13 @@ function cont_frac(n, d, k) {
     }
     return n(1) / denominator(1);
 }
+
+function tan_cf(x, k) {
+    return cont_frac(i => i === 1 ? x : - x * x,
+                     i => (2 * i) - 1,
+                     k);
+}
+
+tan_cf(.5, 20); // 0.5463024898437905
+tan_cf(45 * math_PI/180, 20); // 1
+tan_cf(0, 20); // 0
