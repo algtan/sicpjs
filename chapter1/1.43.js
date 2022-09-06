@@ -18,3 +18,21 @@
 function compose(f, g) {
     return x => f(g(x));
 }
+
+function repeated(f, times) {
+    return times === 1
+        ? x => f(x)
+        : repeated(compose(f, f), times - 1);
+}
+
+function square(x) {
+    return x * x;
+}
+
+function inc(x) {
+    return x + 1;
+}
+
+repeated(inc, 2)(5); // 7
+
+repeated(square, 2)(5); // 625
