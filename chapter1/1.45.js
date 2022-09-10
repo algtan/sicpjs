@@ -53,3 +53,20 @@ function repeated(f, times) {
         ? x => f(x)
         : repeated(compose(f, f), times - 1);
 }
+
+// from page 39
+function fast_expt(b, n) {
+    return n === 0
+        ? 1
+        : is_even(n)
+        ? square(fast_expt(b, n / 2))
+        : b * fast_expt(b, n - 1);
+}
+
+function is_even(n) {
+    return n % 2 === 0;
+}
+
+function square(x) {
+    return x * x;
+}
