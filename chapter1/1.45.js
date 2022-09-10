@@ -70,3 +70,30 @@ function is_even(n) {
 function square(x) {
     return x * x;
 }
+
+function nth_root(n, x) {
+    return fixed_point(
+                repeated(average_damp, math_floor(math_log2(n)))(y => x / fast_expt(y, n - 1)),
+                1);
+}
+
+nth_root(2, 4); // 1 average_damp
+nth_root(3, 8); // 1 average_damp
+nth_root(4, 16); // 2 average_damps
+nth_root(5, 32); // 2 average_damps
+nth_root(6, 64); // 2 average_damps
+nth_root(7, 128); // 2 average_damps
+nth_root(8, 256); // 3 average_damps
+nth_root(9, 512); // 3 average_damps
+nth_root(10, 1024); // 3 average_damps
+nth_root(11, 2048); // 3 average_damps
+nth_root(12, 4096); // 3 average_damps
+nth_root(13, 8192); // 3 average_damps
+nth_root(14, 16384); // 3 average_damps
+nth_root(15, 32768); // 3 average_damps
+nth_root(16, 65536); // 3 average_damps
+nth_root(20, 1048576); // 3 average_damps
+
+// For the most part, it looks like the number of average_damps needed grows at a logarithmic scale
+// (1 average_damps for 2th and 3rd roots, 2 average_damps for 4th, 5th, 6th, and 7th roots,
+// 3 average_damps for 8th, 9th, 10th, 11th, 12th, 13th, 14th, and 15th roots, etc.)
