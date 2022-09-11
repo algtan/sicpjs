@@ -34,3 +34,34 @@ function abs(x) {
 function square(x) {
     return x * x;
 }
+
+function iterative_improve(check_guess, improve_guess) {
+    function iterate(guess) {
+        return check_guess(guess) ? guess : iterate(improve_guess(guess));
+    }
+    return iterate;
+}
+
+function sqrt(x) {
+    return iterative_improve(
+        (y) => is_good_enough(y, x),
+        (y) => average(y, x)
+    )(1);
+}
+
+// from page 60
+const tolerance = 0.00001;
+function close_enough(x, y) {
+    return abs(x - y) < tolerance;
+}
+
+function fixed_point(f, first_guess) {
+    return iterative_improve(
+        (y) => close_enough(y, f(y)),
+        (y) => f(y)
+    )(first_guess);
+}
+
+fixed_point(math_cos, 1);
+fixed_point((y) => math_sin(y) + math_cos(y), 1);
+fixed_point((x) => 1 + 1 / x, 1);
