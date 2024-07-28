@@ -13,5 +13,19 @@
 //}
 
 function make_rat(n, d) {
-    
+    return pair(math_sign(n) * math_sign(d) * math_abs(n), math_abs(d));
 }
+
+function numer(x) {
+    return head(x);
+}
+
+function denom(x) {
+    return tail(x);
+}
+
+const rat_num = make_rat(1, -2);
+
+numer(rat_num);
+
+denom(rat_num);
