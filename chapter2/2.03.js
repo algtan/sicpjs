@@ -40,4 +40,56 @@ function end_segment(s) {
 }
 
 // We are going to proceed under the assumption that the line segments created
-// are perpendicular.
+// are perpendicular, and they share a similar point.
+
+// Rectangles - 1st Implementation
+function make_rectangle(s1, s2) {
+    return pair(s1, s2);
+}
+
+function square(a) {
+    return a * a;
+}
+
+function distance(s) {
+    const p1 = head(s);
+    const p2 = tail(s);
+    
+    const x1 = x_point(p1);
+    const x2 = x_point(p2);
+    
+    const y1 = y_point(p1);
+    const y2 = y_point(p2);
+    
+    return math_sqrt(square(x2 - x1) + square(y2 - y1));
+}
+
+function height(r) {
+    return distance(head(r));
+}
+
+function width(r) {
+    return distance(tail(r));
+}
+
+function perimeter(r) {
+    return 2 * height(r) + 2 * width(r);
+}
+
+function area(r) {
+    return height(r) * width(r);
+}
+
+
+// Test
+const p1 = make_point(2, 0);
+const p2 = make_point(0, 0);
+const p3 = make_point(0, 3);
+
+const s1 = make_segment(p1, p2);
+const s2 = make_segment(p2, p3);
+
+const rect = make_rectangle(s1, s2);
+
+perimeter(rect); // 10
+area(rect); // 6
