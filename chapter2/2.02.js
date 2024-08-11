@@ -18,3 +18,51 @@ function print_point(p) {
                        + stringify(y_point(p)) + ")");
 }
 
+// Points
+function make_point(x, y) {
+    return pair(x, y);
+}
+
+function x_point(p) {
+    return head(p);
+}
+
+function y_point(p) {
+    return tail(p);
+}
+
+// Line Segments
+function make_segment(p1, p2) {
+    return pair(p1, p2);
+}
+
+function start_segment(s) {
+    return head(s);
+}
+
+function end_segment(s) {
+    return tail(s);
+}
+
+// Midpoint
+function avg(a, b) {
+    return (a + b) / 2;
+}
+
+function midpoint_segment(s) {
+    const x = avg(x_point(start_segment(s)), x_point(end_segment(s)));
+    const y = avg(y_point(start_segment(s)), y_point(end_segment(s)));
+    
+    return make_point(x, y);
+}
+
+
+// Test
+const start = make_point(1, 1);
+const end = make_point(3, 5);
+
+const segment = make_segment(start, end);
+
+const midpoint = midpoint_segment(segment);
+
+print_point(midpoint); // Expect midpoint to be (2, 3)
