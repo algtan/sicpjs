@@ -18,3 +18,17 @@ function add_1(n) {
 // Define 'one' and 'two' directly (not in terms of 'zero' and 'add_1'). (Hint:
 // Use substitution to evaluate 'add_1(zero)'). Give a direct definition of the
 // addition function 'plus (not in terms of repeated application of 'add_1').
+
+// add_1(zero)
+// f => x => f((f => x => x)(f)(x))
+// f => x => f((x => x)(x))
+// f => x => f(x)
+
+const one = f => x => f(x);
+
+// add_1(one)
+// f => x => f((x => f(x))(f)(x))
+// f => x => f((x => f(x))(x))
+// f => x => f(f(x))
+
+const two = f => x => f(f(x));
