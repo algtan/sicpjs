@@ -32,3 +32,7 @@ const one = f => x => f(x);
 // f => x => f(f(x))
 
 const two = f => x => f(f(x));
+
+function plus(m, n) {
+    return f => x => m(f)(n(f)(x));
+}
