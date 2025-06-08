@@ -13,3 +13,11 @@ function make_interval(x, y) {
 
 // Define selectors 'upper_bound' and 'lower_bound' to complete the
 // implementation.
+
+function upper_bound(i) {
+    return tail(i);
+}
+
+function lower_bound(i) {
+    return head(i);
+}
