@@ -9,14 +9,17 @@
 // given interval. The 'center' selector is the same as the one shown above.
 
 // from p. 83
+// Creates an interval using a center and a width
 function make_center_width(c, w) {
     return make_interval(c - w, c + w);
 }
 
+// Returns the center value for an interval
 function center(i) {
     return (lower_bound(i) + upper_bound(i)) / 2;
 }
 
+// Returns the width value for an interval
 function width(i) {
     return (upper_bound(i) - lower_bound(i)) / 2;
 }
