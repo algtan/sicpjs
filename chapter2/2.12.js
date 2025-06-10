@@ -36,3 +36,23 @@ function upper_bound(i) {
 function lower_bound(i) {
     return head(i);
 }
+
+// Need to create a function similar to 'make_center_width' that creates an
+// interval using a center and a percent. Also need to create a function
+// 'percent' similar to 'width' that returns the percent from an interval
+
+function make_center_percent(c, p) {
+    const width = c * (p / 100);
+    return make_center_width(c, width);
+}
+
+function percent(i) {
+    const c = center(i);
+    const w = width(i);
+    return (w / c) * 100;
+}
+
+const i = make_center_percent(10, 10);
+upper_bound(i); // 11
+lower_bound(i); // 9
+percent(i); // 10
