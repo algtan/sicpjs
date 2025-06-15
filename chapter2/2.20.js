@@ -42,6 +42,11 @@ brooks(plus_curried, list(3, 4)); // 7
 // brooks_curried(list(plus_curried, 3, 4));
 // 7
 
+function brooks_curried(ls) {
+    return brooks(head(ls), tail(ls));
+}
+
+brooks_curried(list(plus_curried, 3, 4)); // 7
 
 // Part c
 // With this function 'brooks_curried', what are the results of evaluating the
