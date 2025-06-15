@@ -58,3 +58,10 @@ brooks_curried(list(plus_curried, 3, 4)); // 7
 // brooks_curried(list(brooks_curried,
 //                     list(brooks_curried,
 //                          list(plus_curried, 3, 4))));
+
+brooks_curried(list(brooks_curried,
+                    list(plus_curried, 3, 4))); // 7
+
+brooks_curried(list(brooks_curried,
+                    list(brooks_curried,
+                         list(plus_curried, 3, 4)))); // 7
