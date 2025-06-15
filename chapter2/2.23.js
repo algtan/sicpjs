@@ -17,3 +17,14 @@
 
 // The value returned by the call to 'for_each' (not illustrated above) can be
 // something arbitrary, such as true. Give an implementation of 'for_each'.
+
+function for_each(fn, ls) {
+    if (is_null(ls)) {
+        return undefined;
+    }
+    
+    fn(head(ls));
+    return for_each(fn, tail(ls));
+}
+
+for_each(x => display(x), list(57, 321, 88));
