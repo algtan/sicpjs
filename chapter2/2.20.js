@@ -27,6 +27,13 @@ function plus_curried(x) {
 // brooks(plus_curried, list(3, 4));
 // 7
 
+function brooks(cf, ls) {
+    return is_null(ls)
+           ? cf
+           : brooks(cf(head(ls)), tail(ls));
+}
+
+brooks(plus_curried, list(3, 4)); // 7
 
 // Part b
 // While we are at it, we might as well curry the function 'brooks'! Write a
