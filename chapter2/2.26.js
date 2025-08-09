@@ -12,7 +12,13 @@ const y = list(4, 5, 6);
 // notation and list notation?
 
 // append(x, y)
+// Box notation: [1, [2, [3, [4, [5, [6, null]]]]]]
 
 // pair(x, y)
+// Box notation: [[1, [2, [3, null]]], [4, [5, [6, null]]]]
 
 // list(x, y)
+// Box notation: [[1, [2, [3, null]]], [[4, [5, [6, null]]], null]]
+
+
+// NOTE: List notation completed in notebook
